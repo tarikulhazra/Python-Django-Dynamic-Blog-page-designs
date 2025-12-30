@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Latest Blog Posts</title>
+    <style>
+      /* Reset & Global Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f0f2f5; /* Soft modern gray background */
+        color: #333;
+        line-height: 1.6;
+        padding: 40px 20px;
+      }
+
+      /* Container */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* Header Styling */
+      h1 {
+        text-align: center;
+        color: #1a202c;
+        margin-bottom: 10px;
+        font-size: 2.5rem;
+      }
+
+      .subtitle {
+        text-align: center;
+        color: #718096;
+        margin-bottom: 50px;
+      }
+
+      /* Grid Layout */
+      .post-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+      }
+
+      /* Post Card Styling */
+      .post-card {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 1px solid #e2e8f0;
+      }
+
+      .post-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Typography within Card */
+      .post-title {
+        color: #2d3748;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        font-weight: 700;
+        border-bottom: 2px solid #3182ce; /* Blue accent line */
+        padding-bottom: 10px;
+        display: inline-block;
+      }
+
+      .post-content {
+        color: #4a5568;
+        font-size: 1rem;
+        margin-bottom: 20px;
+        flex-grow: 1; /* Pushes meta data to bottom */
+      }
+
+      /* Meta Data (Code & Date) */
+      .meta-info {
+        border-top: 1px solid #edf2f7;
+        padding-top: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.875rem;
+      }
+
+      .code-badge {
+        background-color: #ebf8ff;
+        color: #3182ce;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.8rem;
+      }
+
+      .date-text {
+        color: #a0aec0;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Latest Blog Posts</h1>
+      <p class="subtitle">Stay updated with our newest articles</p>
+      
+      <div class="post-grid">
+        {% for post in posts %}
+        <div class="post-card">
+          <div>
+            <h2 class="post-title">{{ post.title }}</h2>
+            <p class="post-content">{{ post.content }}</p>
+          </div>
+          
+          <div class="meta-info">
+            <span class="code-badge">#{{ post.code }}</span>
+            <span class="date-text">{{ post.created_at }}</span>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </body>
+</html>
